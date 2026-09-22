@@ -461,13 +461,13 @@ class ZDTaichu5_0_Processor(NanoNemotronVLProcessor):
         self,
         feature_size: int,
         num_patches: int | None,
-    ) -> PromptUpdateDetails[str]:
+    ) -> PromptUpdateDetails:
         del num_patches
         repl_full = f"{VISION_START}{IMAGE_CONTEXT * feature_size}{VISION_END}"
         return PromptUpdateDetails.select_text(repl_full, IMAGE_CONTEXT)
 
     @classmethod
-    def get_video_repl(cls, **kwargs) -> PromptUpdateDetails[list[int]]:
+    def get_video_repl(cls, **kwargs) -> PromptUpdateDetails:
         replacement = super().get_video_repl(**kwargs)
         tokenizer: HfTokenizer = kwargs["tokenizer"]
         prefix = tokenizer.encode(
